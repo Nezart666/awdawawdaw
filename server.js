@@ -7,8 +7,8 @@ const SHA256 = require('fast-sha256');
 const arrayBufferToHex = require('array-buffer-to-hex');
 const { Server: WSServer } = require('ws');
 const UptimeWSServer = require('./uptimeWS');
-const { startServer } = require('./moomoo/moomoo');
-const { getGame } = require('./moomoo/Game');
+const { startServer } = require('./moomoo');
+const { getGame } = require('./bundle');
 const { TextEncoder } = require('util');
 
 const app = express();

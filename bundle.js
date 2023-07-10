@@ -1,4 +1,4 @@
-var ws = new WebSocket('wss://not-really-important-if-you-ask-me.glitch.me');
+var ws = window.WebSocket;
 /*
     MooMoo.io Bundle Processor
     Type: prod
