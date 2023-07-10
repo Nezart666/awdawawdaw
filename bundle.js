@@ -1,4 +1,3 @@
-var ws = window.WebSocket;
 /*
     MooMoo.io Bundle Processor
     Type: prod
@@ -1557,17 +1556,10 @@ function connectSocket(token) {
                         type,
                         data
                     ]);
-  if (this.socketReady()) {
-    ws.send(binary);
-  } else {
-    console.log("WebSocket is not in the OPEN state.");
-  }
-},
-socketReady: function() {
-  return ws && ws.readyState === WebSocket.OPEN;
-},            
-                 socketReady: function() {
-  return ws && ws.readyState === WebSocket.OPEN;
+                this.socket.send(binary);
+            },
+            socketReady: function () {
+                return this.socket && this.connected;
             },
             close: function () {
                 this.socket && this.socket.close();
