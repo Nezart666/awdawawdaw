@@ -202,137 +202,135 @@
                 connectSocket(token);
             }) : connectSocket(null));
         }
-        function connectSocket(token) {
-            vultrClient.start(function (address, port, gameIndex) {
-                var wsAddress = (isProd ? 'wss' : 'ws') + '://' + address + ':8008/?gameIndex=' + gameIndex;
-                token && (wsAddress += '&token=' + encodeURIComponent(token)), io.connect(wsAddress, function (error) {
-                    pingSocket(), setInterval(() => pingSocket(), 2500), error ? disconnect(error) : (enterGameButton.onclick = UTILS.checkTrusted(function () {
-                        !function () {
-                            var validGame = ++preAdGameCount > 1, validTime = Date.now() - preAdLastShowTime > preAdInterval;
-                            validGame && validTime ? (preAdLastShowTime = Date.now(), showPreAd()) : enterGame();
-                        }();
-                    }), UTILS.hookTouchEvents(enterGameButton), promoImageButton.onclick = UTILS.checkTrusted(function () {
-                        openLink('https://krunker.io/?play=SquidGame_KB');
-                    }), UTILS.hookTouchEvents(promoImageButton), joinPartyButton.onclick = UTILS.checkTrusted(function () {
-                        setTimeout(function () {
-                            !function () {
-                                var currentKey = serverBrowser.value, key = prompt('party key', currentKey);
-                                key && (window.onbeforeunload = void 0, window.location.href = '/?server=' + key);
-                            }();
-                        }, 10);
-                    }), UTILS.hookTouchEvents(joinPartyButton), settingsButton.onclick = UTILS.checkTrusted(function () {
-                        guideCard.classList.contains('showing') ? (guideCard.classList.remove('showing'), settingsButtonTitle.innerText = 'Settings') : (guideCard.classList.add('showing'), settingsButtonTitle.innerText = 'Close');
-                    }), UTILS.hookTouchEvents(settingsButton), allianceButton.onclick = UTILS.checkTrusted(function () {
-                        resetMoveDir(), 'block' != allianceMenu.style.display ? showAllianceMenu() : allianceMenu.style.display = 'none';
-                    }), UTILS.hookTouchEvents(allianceButton), storeButton.onclick = UTILS.checkTrusted(function () {
-                        'block' != storeMenu.style.display ? (storeMenu.style.display = 'block', allianceMenu.style.display = 'none', closeChat(), generateStoreList()) : storeMenu.style.display = 'none';
-                    }), UTILS.hookTouchEvents(storeButton), chatButton.onclick = UTILS.checkTrusted(function () {
-                        toggleChat();
-                    }), UTILS.hookTouchEvents(chatButton), mapDisplay.onclick = UTILS.checkTrusted(function () {
-                        sendMapPing();
-                    }), UTILS.hookTouchEvents(mapDisplay), function () {
-                        for (var i = 0; i < icons.length; ++i) {
-                            var tmpSprite = new Image();
-                            tmpSprite.onload = function () {
-                                this.isLoaded = !0;
-                            }, tmpSprite.src = '.././img/icons/' + icons[i] + '.png', iconSprites[icons[i]] = tmpSprite;
-                        }
-                    }(), loadingText.style.display = 'none', menuCardHolder.style.display = 'block', nameInput.value = getSavedVal('moo_name') || '', function () {
-                        var savedNativeValue = getSavedVal('native_resolution');
-                        setUseNativeResolution(savedNativeValue ? 'true' == savedNativeValue : 'undefined' != typeof cordova), showPing = 'true' == getSavedVal('show_ping'), pingDisplay.hidden = !showPing, getSavedVal('moo_moosic'), setInterval(function () {
-                            window.cordova && (document.getElementById('downloadButtonContainer').classList.add('cordova'), document.getElementById('mobileDownloadButtonContainer').classList.add('cordova'));
-                        }, 1000), updateSkinColorPicker(), UTILS.removeAllChildren(actionBar);
-                        for (var i = 0; i < items.weapons.length + items.list.length; ++i)
-                            !function (i) {
-                                UTILS.generateElement({
-                                    id: 'actionBarItem' + i,
-                                    class: 'actionBarItem',
-                                    style: 'display:none',
-                                    onmouseout: function () {
-                                        showItemInfo();
-                                    },
-                                    parent: actionBar
-                                });
-                            }(i);
-                        for (i = 0; i < items.list.length + items.weapons.length; ++i)
-                            !function (i) {
-                                var tmpCanvas = document.createElement('canvas');
-                                tmpCanvas.width = tmpCanvas.height = 66;
-                                var tmpContext = tmpCanvas.getContext('2d');
-                                if (tmpContext.translate(tmpCanvas.width / 2, tmpCanvas.height / 2), tmpContext.imageSmoothingEnabled = !1, tmpContext.webkitImageSmoothingEnabled = !1, tmpContext.mozImageSmoothingEnabled = !1, items.weapons[i]) {
-                                    tmpContext.rotate(Math.PI / 4 + Math.PI);
-                                    var tmpSprite = new Image();
-                                    toolSprites[items.weapons[i].src] = tmpSprite, tmpSprite.onload = function () {
-                                        this.isLoaded = !0;
-                                        var tmpPad = 1 / (this.height / this.width), tmpMlt = items.weapons[i].iPad || 1;
-                                        tmpContext.drawImage(this, -tmpCanvas.width * tmpMlt * config.iconPad * tmpPad / 2, -tmpCanvas.height * tmpMlt * config.iconPad / 2, tmpCanvas.width * tmpMlt * tmpPad * config.iconPad, tmpCanvas.height * tmpMlt * config.iconPad), tmpContext.fillStyle = 'rgba(0, 0, 70, 0.1)', tmpContext.globalCompositeOperation = 'source-atop', tmpContext.fillRect(-tmpCanvas.width / 2, -tmpCanvas.height / 2, tmpCanvas.width, tmpCanvas.height), document.getElementById('actionBarItem' + i).style.backgroundImage = 'url(' + tmpCanvas.toDataURL() + ')';
-                                    }, tmpSprite.src = '.././img/weapons/' + items.weapons[i].src + '.png', (tmpUnit = document.getElementById('actionBarItem' + i)).onmouseover = UTILS.checkTrusted(function () {
-                                        showItemInfo(items.weapons[i], !0);
-                                    }), tmpUnit.onclick = UTILS.checkTrusted(function () {
-                                        selectToBuild(i, !0);
-                                    }), UTILS.hookTouchEvents(tmpUnit);
-                                } else {
-                                    tmpSprite = getItemSprite(items.list[i - items.weapons.length], !0);
-                                    var tmpUnit, tmpScale = Math.min(tmpCanvas.width - config.iconPadding, tmpSprite.width);
-                                    tmpContext.globalAlpha = 1, tmpContext.drawImage(tmpSprite, -tmpScale / 2, -tmpScale / 2, tmpScale, tmpScale), tmpContext.fillStyle = 'rgba(0, 0, 70, 0.1)', tmpContext.globalCompositeOperation = 'source-atop', tmpContext.fillRect(-tmpScale / 2, -tmpScale / 2, tmpScale, tmpScale), document.getElementById('actionBarItem' + i).style.backgroundImage = 'url(' + tmpCanvas.toDataURL() + ')', (tmpUnit = document.getElementById('actionBarItem' + i)).onmouseover = UTILS.checkTrusted(function () {
-                                        showItemInfo(items.list[i - items.weapons.length]);
-                                    }), tmpUnit.onclick = UTILS.checkTrusted(function () {
-                                        selectToBuild(i - items.weapons.length);
-                                    }), UTILS.hookTouchEvents(tmpUnit);
-                                }
-                            }(i);
-                        nameInput.ontouchstart = UTILS.checkTrusted(function (e) {
-                            e.preventDefault();
-                            var newValue = prompt('enter name', e.currentTarget.value);
-                            newValue && (e.currentTarget.value = newValue.slice(0, 15));
-                        }), nativeResolutionCheckbox.checked = useNativeResolution, nativeResolutionCheckbox.onchange = UTILS.checkTrusted(function (e) {
-                            setUseNativeResolution(e.target.checked);
-                        }), showPingCheckbox.checked = showPing, showPingCheckbox.onchange = UTILS.checkTrusted(function (e) {
-                            showPing = showPingCheckbox.checked, pingDisplay.hidden = !showPing, saveVal('show_ping', showPing ? 'true' : 'false');
+function connectSocket(token) {
+    vultrClient.start(function (address, port, gameIndex) {
+        var wsAddress = (isProd ? 'wss' : 'ws') + '://' + address + ':8008/?gameIndex=' + gameIndex;
+        token && (wsAddress += '&token=' + encodeURIComponent(token)), io.connect(wsAddress, function (error) {
+            pingSocket(), setInterval(() => pingSocket(), 2500), error ? disconnect(error) : (enterGameButton.onclick = UTILS.checkTrusted(function () {
+                !function () {
+                    var validGame = ++preAdGameCount > 1, validTime = Date.now() - preAdLastShowTime > preAdInterval;
+                    validGame && validTime ? (preAdLastShowTime = Date.now(), showPreAd()) : enterGame();
+                }();
+            }), UTILS.hookTouchEvents(enterGameButton), joinPartyButton.onclick = UTILS.checkTrusted(function () {
+                setTimeout(function () {
+                    !function () {
+                        var currentKey = serverBrowser.value, key = prompt('party key', currentKey);
+                        key && (window.onbeforeunload = void 0, window.location.href = '/?server=' + key);
+                    }();
+                }, 10);
+            }), UTILS.hookTouchEvents(joinPartyButton), settingsButton.onclick = UTILS.checkTrusted(function () {
+                guideCard.classList.contains('showing') ? (guideCard.classList.remove('showing'), settingsButtonTitle.innerText = 'Settings') : (guideCard.classList.add('showing'), settingsButtonTitle.innerText = 'Close');
+            }), UTILS.hookTouchEvents(settingsButton), allianceButton.onclick = UTILS.checkTrusted(function () {
+                resetMoveDir(), 'block' != allianceMenu.style.display ? showAllianceMenu() : allianceMenu.style.display = 'none';
+            }), UTILS.hookTouchEvents(allianceButton), storeButton.onclick = UTILS.checkTrusted(function () {
+                'block' != storeMenu.style.display ? (storeMenu.style.display = 'block', allianceMenu.style.display = 'none', closeChat(), generateStoreList()) : storeMenu.style.display = 'none';
+            }), UTILS.hookTouchEvents(storeButton), chatButton.onclick = UTILS.checkTrusted(function () {
+                toggleChat();
+            }), UTILS.hookTouchEvents(chatButton), mapDisplay.onclick = UTILS.checkTrusted(function () {
+                sendMapPing();
+            }), UTILS.hookTouchEvents(mapDisplay), function () {
+                for (var i = 0; i < icons.length; ++i) {
+                    var tmpSprite = new Image();
+                    tmpSprite.onload = function () {
+                        this.isLoaded = !0;
+                    }, tmpSprite.src = '.././img/icons/' + icons[i] + '.png', iconSprites[icons[i]] = tmpSprite;
+                }
+            }(), loadingText.style.display = 'none', menuCardHolder.style.display = 'block', nameInput.value = getSavedVal('moo_name') || '', function () {
+                var savedNativeValue = getSavedVal('native_resolution');
+                setUseNativeResolution(savedNativeValue ? 'true' == savedNativeValue : 'undefined' != typeof cordova), showPing = 'true' == getSavedVal('show_ping'), pingDisplay.hidden = !showPing, getSavedVal('moo_moosic'), setInterval(function () {
+                    window.cordova && (document.getElementById('downloadButtonContainer').classList.add('cordova'), document.getElementById('mobileDownloadButtonContainer').classList.add('cordova'));
+                }, 1000), updateSkinColorPicker(), UTILS.removeAllChildren(actionBar);
+                for (var i = 0; i < items.weapons.length + items.list.length; ++i)
+                    !function (i) {
+                        UTILS.generateElement({
+                            id: 'actionBarItem' + i,
+                            class: 'actionBarItem',
+                            style: 'display:none',
+                            onmouseout: function () {
+                                showItemInfo();
+                            },
+                            parent: actionBar
                         });
-                    }());
-                }, {
-                    id: setInitData,
-                    d: disconnect,
-                    1: setupGame,
-                    2: addPlayer,
-                    4: removePlayer,
-                    33: updatePlayers,
-                    5: updateLeaderboard,
-                    6: loadGameObject,
-                    a: loadAI,
-                    aa: animateAI,
-                    7: gatherAnimation,
-                    8: wiggleGameObject,
-                    sp: shootTurret,
-                    9: updatePlayerValue,
-                    h: updateHealth,
-                    11: killPlayer,
-                    12: killObject,
-                    13: killObjects,
-                    14: updateItemCounts,
-                    15: updateAge,
-                    16: updateUpgrades,
-                    17: updateItems,
-                    18: addProjectile,
-                    19: remProjectile,
-                    20: serverShutdownNotice,
-                    ac: addAlliance,
-                    ad: deleteAlliance,
-                    an: allianceNotification,
-                    st: setPlayerTeam,
-                    sa: setAlliancePlayers,
-                    us: updateStoreItems,
-                    ch: receiveChat,
-                    mm: updateMinimap,
-                    t: showText,
-                    p: pingMap,
-                    pp: pingSocketResponse
-                }), setupServerStatus(), setTimeout(() => updateServerList(), 3000);
-            }, function (error) {
-                console.error('Vultr error:', error), alert('Error:\n' + error), disconnect('disconnected');
-            });
-        }
+                    }(i);
+                for (i = 0; i < items.list.length + items.weapons.length; ++i)
+                    !function (i) {
+                        var tmpCanvas = document.createElement('canvas');
+                        tmpCanvas.width = tmpCanvas.height = 66;
+                        var tmpContext = tmpCanvas.getContext('2d');
+                        if (tmpContext.translate(tmpCanvas.width / 2, tmpCanvas.height / 2), tmpContext.imageSmoothingEnabled = !1, tmpContext.webkitImageSmoothingEnabled = !1, tmpContext.mozImageSmoothingEnabled = !1, items.weapons[i]) {
+                            tmpContext.rotate(Math.PI / 4 + Math.PI);
+                            var tmpSprite = new Image();
+                            toolSprites[items.weapons[i].src] = tmpSprite, tmpSprite.onload = function () {
+                                this.isLoaded = !0;
+                                var tmpPad = 1 / (this.height / this.width), tmpMlt = items.weapons[i].iPad || 1;
+                                tmpContext.drawImage(this, -tmpCanvas.width * tmpMlt * config.iconPad * tmpPad / 2, -tmpCanvas.height * tmpMlt * config.iconPad / 2, tmpCanvas.width * tmpMlt * tmpPad * config.iconPad, tmpCanvas.height * tmpMlt * config.iconPad), tmpContext.fillStyle = 'rgba(0, 0, 70, 0.1)', tmpContext.globalCompositeOperation = 'source-atop', tmpContext.fillRect(-tmpCanvas.width / 2, -tmpCanvas.height / 2, tmpCanvas.width, tmpCanvas.height), document.getElementById('actionBarItem' + i).style.backgroundImage = 'url(' + tmpCanvas.toDataURL() + ')';
+                            }, tmpSprite.src = '.././img/weapons/' + items.weapons[i].src + '.png', (tmpUnit = document.getElementById('actionBarItem' + i)).onmouseover = UTILS.checkTrusted(function () {
+                                showItemInfo(items.weapons[i], !0);
+                            }), tmpUnit.onclick = UTILS.checkTrusted(function () {
+                                selectToBuild(i, !0);
+                            }), UTILS.hookTouchEvents(tmpUnit);
+                        } else {
+                            tmpSprite = getItemSprite(items.list[i - items.weapons.length], !0);
+                            var tmpUnit, tmpScale = Math.min(tmpCanvas.width - config.iconPadding, tmpSprite.width);
+                            tmpContext.globalAlpha = 1, tmpContext.drawImage(tmpSprite, -tmpScale / 2, -tmpScale / 2, tmpScale, tmpScale), tmpContext.fillStyle = 'rgba(0, 0, 70, 0.1)', tmpContext.globalCompositeOperation = 'source-atop', tmpContext.fillRect(-tmpScale / 2, -tmpScale / 2, tmpScale, tmpScale), document.getElementById('actionBarItem' + i).style.backgroundImage = 'url(' + tmpCanvas.toDataURL() + ')', (tmpUnit = document.getElementById('actionBarItem' + i)).onmouseover = UTILS.checkTrusted(function () {
+                                showItemInfo(items.list[i - items.weapons.length]);
+                            }), tmpUnit.onclick = UTILS.checkTrusted(function () {
+                                selectToBuild(i - items.weapons.length);
+                            }), UTILS.hookTouchEvents(tmpUnit);
+                    }
+                }(i);
+                nameInput.ontouchstart = UTILS.checkTrusted(function (e) {
+                    e.preventDefault();
+                    var newValue = prompt('enter name', e.currentTarget.value);
+                    newValue && (e.currentTarget.value = newValue.slice(0, 15));
+                }), nativeResolutionCheckbox.checked = useNativeResolution, nativeResolutionCheckbox.onchange = UTILS.checkTrusted(function (e) {
+                    setUseNativeResolution(e.target.checked);
+                }), showPingCheckbox.checked = showPing, showPingCheckbox.onchange = UTILS.checkTrusted(function (e) {
+                    showPing = showPingCheckbox.checked, pingDisplay.hidden = !showPing, saveVal('show_ping', showPing ? 'true' : 'false');
+                });
+            }());
+        }, {
+            id: setInitData,
+            d: disconnect,
+            1: setupGame,
+            2: addPlayer,
+            4: removePlayer,
+            33: updatePlayers,
+            5: updateLeaderboard,
+            6: loadGameObject,
+            a: loadAI,
+            aa: animateAI,
+            7: gatherAnimation,
+            8: wiggleGameObject,
+            sp: shootTurret,
+            9: updatePlayerValue,
+            h: updateHealth,
+            11: killPlayer,
+            12: killObject,
+            13: killObjects,
+            14: updateItemCounts,
+            15: updateAge,
+            16: updateUpgrades,
+            17: updateItems,
+            18: addProjectile,
+            19: remProjectile,
+            20: serverShutdownNotice,
+            ac: addAlliance,
+            ad: deleteAlliance,
+            an: allianceNotification,
+            st: setPlayerTeam,
+            sa: setAlliancePlayers,
+            us: updateStoreItems,
+            ch: receiveChat,
+            mm: updateMinimap,
+            t: showText,
+            p: pingMap,
+            pp: pingSocketResponse
+        }), setupServerStatus(), setTimeout(() => updateServerList(), 3000);
+    }, function (error) {
+        console.error('Vultr error:', error), alert('Error:\n' + error), disconnect('disconnected');
+    });
+}
         var canStore, Sound = new SoundManager(config, UTILS), mathPI = Math.PI, mathPI2 = 2 * mathPI;
         function saveVal(name, val) {
             canStore && localStorage.setItem(name, val);
