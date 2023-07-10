@@ -2549,19 +2549,10 @@ window.onbeforeunload = null;
     ,
     window.onload = function() {
         ht = !0,
-        v(),
-        setTimeout((function() {
-            k || (alert("Captcha failed to load"),
-            window.location.reload())
-        }
-        ), 2e4)
+        v()
     }
     ,
-    window.captchaCallback = function() {
-        ut = !0,
-            v()
-    }
-    ,
+    
     we.oncontextmenu = function() {
         return !1
     }
