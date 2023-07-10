@@ -2607,7 +2607,7 @@ window.onbeforeunload = null;
                 }
             }
         };
-        e.open("GET", "./serverData", true);
+        e.open("GET", "serverData", true);
         e.send();
     }
     
