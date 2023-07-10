@@ -1,1 +1,110 @@
-{"scheme":"mm_exp","servers":[{"ip":"26bf850d3d067d278500ab9d99066d8c","scheme":"mm_exp","region":"vultr:12","index":2,"games":[{"playerCount":5,"isPrivate":false}]},{"ip":"aefd4d44685aaef2ccec10a53f4cb88b","scheme":"mm_exp","region":"vultr:9","index":2,"games":[{"playerCount":36,"isPrivate":false}]},{"ip":"ac8649434835a90d12e903c899905223","scheme":"mm_exp","region":"vultr:40","index":1,"games":[{"playerCount":22,"isPrivate":false}]},{"ip":"c9ee3091133b95d8f1d14a46d68a0c1d","scheme":"mm_exp","region":"vultr:40","index":2,"games":[{"playerCount":5,"isPrivate":false}]},{"ip":"27fe5e747ee91d8f60fcc8b6605c60c9","scheme":"mm_exp","region":"vultr:19","index":0,"games":[{"playerCount":6,"isPrivate":false}]},{"ip":"b6daffac3865a8e721437770d418fadb","scheme":"mm_exp","region":"vultr:19","index":2,"games":[{"playerCount":4,"isPrivate":false}]},{"ip":"db820043435c0b9cb4bdf15971323df8","scheme":"mm_exp","region":"vultr:9","index":1,"games":[{"playerCount":35,"isPrivate":false}]},{"ip":"7dff4b4ff28d936249387ebf93be7f11","scheme":"mm_exp","region":"vultr:19","index":1,"games":[{"playerCount":2,"isPrivate":false}]},{"ip":"fdc8040f190f2d6c48f5bac68bf86d09","scheme":"mm_exp","region":"vultr:9","index":0,"games":[{"playerCount":48,"isPrivate":false}]},{"ip":"2d2e35d7b238b3123c7a5becd117bb61","scheme":"mm_exp","region":"vultr:39","index":0,"games":[{"playerCount":40,"isPrivate":false}]},{"ip":"20f2116e2723dc17ba6a8d67a5ce1a30","scheme":"mm_exp","region":"vultr:39","index":3,"games":[{"playerCount":18,"isPrivate":false}]},{"ip":"9246f9bd404f5e9afa8c00b663822158","scheme":"mm_exp","region":"vultr:39","index":1,"games":[{"playerCount":25,"isPrivate":false}]},{"ip":"ad6e2172370448440a3a51f4d6e0d871","scheme":"mm_exp","region":"vultr:12","index":1,"games":[{"playerCount":17,"isPrivate":false}]},{"ip":"81f399f25e341c6961a5cdd759f2e4af","scheme":"mm_exp","region":"vultr:12","index":0,"games":[{"playerCount":18,"isPrivate":false}]},{"ip":"b8593ce9284cac92dc8f5d901356a276","scheme":"mm_exp","region":"vultr:39","index":2,"games":[{"playerCount":9,"isPrivate":false}]}]}
+{
+  "scheme": "mm_exp",
+  "servers": [
+    {
+      "ip": "26bf850d3d067d278500ab9d99066d8c",
+      "scheme": "mm_exp",
+      "region": "vultr:12",
+      "index": 2,
+      "games": [{ "playerCount": 5, "isPrivate": false }]
+    },
+    {
+      "ip": "aefd4d44685aaef2ccec10a53f4cb88b",
+      "scheme": "mm_exp",
+      "region": "vultr:9",
+      "index": 2,
+      "games": [{ "playerCount": 36, "isPrivate": false }]
+    },
+    {
+      "ip": "ac8649434835a90d12e903c899905223",
+      "scheme": "mm_exp",
+      "region": "vultr:40",
+      "index": 1,
+      "games": [{ "playerCount": 22, "isPrivate": false }]
+    },
+    {
+      "ip": "c9ee3091133b95d8f1d14a46d68a0c1d",
+      "scheme": "mm_exp",
+      "region": "vultr:40",
+      "index": 2,
+      "games": [{ "playerCount": 5, "isPrivate": false }]
+    },
+    {
+      "ip": "27fe5e747ee91d8f60fcc8b6605c60c9",
+      "scheme": "mm_exp",
+      "region": "vultr:19",
+      "index": 0,
+      "games": [{ "playerCount": 6, "isPrivate": false }]
+    },
+    {
+      "ip": "b6daffac3865a8e721437770d418fadb",
+      "scheme": "mm_exp",
+      "region": "vultr:19",
+      "index": 2,
+      "games": [{ "playerCount": 4, "isPrivate": false }]
+    },
+    {
+      "ip": "db820043435c0b9cb4bdf15971323df8",
+      "scheme": "mm_exp",
+      "region": "vultr:9",
+      "index": 1,
+      "games": [{ "playerCount": 35, "isPrivate": false }]
+    },
+    {
+      "ip": "7dff4b4ff28d936249387ebf93be7f11",
+      "scheme": "mm_exp",
+      "region": "vultr:19",
+      "index": 1,
+      "games": [{ "playerCount": 2, "isPrivate": false }]
+    },
+    {
+      "ip": "fdc8040f190f2d6c48f5bac68bf86d09",
+      "scheme": "mm_exp",
+      "region": "vultr:9",
+      "index": 0,
+      "games": [{ "playerCount": 48, "isPrivate": false }]
+    },
+    {
+      "ip": "2d2e35d7b238b3123c7a5becd117bb61",
+      "scheme": "mm_exp",
+      "region": "vultr:39",
+      "index": 0,
+      "games": [{ "playerCount": 40, "isPrivate": false }]
+    },
+    {
+      "ip": "20f2116e2723dc17ba6a8d67a5ce1a30",
+      "scheme": "mm_exp",
+      "region": "vultr:39",
+      "index": 3,
+      "games": [{ "playerCount": 18, "isPrivate": false }]
+    },
+    {
+      "ip": "9246f9bd404f5e9afa8c00b663822158",
+      "scheme": "mm_exp",
+      "region": "vultr:39",
+      "index": 1,
+      "games": [{ "playerCount": 25, "isPrivate": false }]
+    },
+    {
+      "ip": "ad6e2172370448440a3a51f4d6e0d871",
+      "scheme": "mm_exp",
+      "region": "vultr:12",
+      "index": 1,
+      "games": [{ "playerCount": 17, "isPrivate": false }]
+    },
+    {
+      "ip": "81f399f25e341c6961a5cdd759f2e4af",
+      "scheme": "mm_exp",
+      "region": "vultr:12",
+      "index": 0,
+      "games": [{ "playerCount": 18, "isPrivate": false }]
+    },
+    {
+      "ip": "b8593ce9284cac92dc8f5d901356a276",
+      "scheme": "mm_exp",
+      "region": "vultr:39",
+      "index": 2,
+      "games": [{ "playerCount": 9, "isPrivate": false }]
+    }
+  ]
+}
